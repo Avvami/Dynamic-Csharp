@@ -336,8 +336,13 @@ namespace Dinamic
                             if (matrix_result[j] > absoluteMaximum)
                                 absoluteMaximum = matrix_result[j];
                         }
-                        
-                        int portion_exclude = Convert.ToInt32(dataGVResult.Rows[Array.IndexOf(matrix_result, absoluteMaximum) - 1].Cells[backword_current * 2].Value);
+
+                        dataGVResult.Rows[Array.IndexOf(matrix_result, absoluteMaximum) - 1].Cells[backword_current * 2].Style.BackColor = Color.LightGreen;
+                        dataGVResult.Rows[Array.IndexOf(matrix_result, absoluteMaximum) - 1].Cells[(backword_current * 2) + 1].Style.BackColor = Color.LightGreen;
+                        string cell_value = "";
+                        cell_value += dataGVResult.Rows[Array.IndexOf(matrix_result, absoluteMaximum) - 1].Cells[backword_current * 2].Value.ToString();
+                        string[] cell_value_split = cell_value.Split('\u002C');
+                        int portion_exclude = Convert.ToInt32(cell_value_split[0]);
                         matchLB.Text += "x" + sequenceInvestments[i] + " = " + portion_exclude + ", F" + sequenceInvestments[i] +
                             " = " + absoluteMaximum + ", E(" + totalCalc + " - " + portion_exclude + ") = ";
                         totalCalc -= portion_exclude;
